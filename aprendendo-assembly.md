@@ -149,3 +149,20 @@ pop destino
 ```assembly
 ret
 ```
+
+### Encerrando a Função Main
+Processo comumente utilizado para encerrar a Função Main. Note que em outras funções do código não é necessário encerrar a função da mesma forma que a Main.
+```assembly
+  xor rax, rax
+  mov rsp, rbp
+  pop rbp
+  ret
+```
+
+***xor rax, rax***: A instrução xor realiza uma operação lógica de ou-exclusivo (XOR) bit a bit entre o registrador rax e ele mesmo. Essa operação tem o efeito de definir o valor de rax como zero. No contexto de encerramento da função main, isso é frequentemente usado para indicar que a função foi executada com sucesso.
+
+***mov rsp, rbp***: A instrução mov é usada para copiar o valor do registrador rbp (Base Pointer) para o registrador rsp (Stack Pointer). Isso restaura o valor original do rsp antes de a função main ser chamada, movendo o ponteiro de pilha de volta ao seu estado anterior.
+
+***pop rbp***: A instrução pop é usada para desempilhar o valor do registrador rbp da pilha. Essa instrução desfaz o ajuste feito no início da função main, quando o valor de rbp foi salvo na pilha. Desempilhar o valor de rbp permite restaurar o valor original do registrador antes de retornar da função.
+
+***ret***: A instrução ret é usada para retornar da função, transferindo o controle de volta ao ponto de chamada original. Ela desempilha o endereço de retorno da pilha e salta para esse endereço. No contexto da função main, isso efetivamente encerra o programa Assembly.
